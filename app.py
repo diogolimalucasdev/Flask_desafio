@@ -25,21 +25,6 @@ tarefas = [
 ]
 
 
-def verificar():
-    for resultado in tarefas:
-        id, responsavel, tarefa, status = resultado.values()
-        if id == 1:
-            dados = id, responsavel, tarefa
-            id2 = 1
-            responsavel = "Diogo"
-            tarefa2 = "Estudar"
-            if id2 == dados[0] and responsavel == dados[1] and tarefa2 == dados[2]:
-                print("foi")
-
-
-verificar()
-
-
 @app.route('/')
 def testar():
     return "esta funcionando"
@@ -75,8 +60,13 @@ def registro_pessoal(id):
 
             if id == identificador:
                 lista = identificador, responsavel, tarefa
+                print(lista[0])
                 if dados['id'] == lista[0] and dados['responsavel'] == lista[1] and dados['tarefa'] == lista[2]:
-                    print(jsonify(dados))
+                    tarefas[id-1] = dados
+                    print(tarefas)
+                    return jsonify(dados)
+                else:
+                    print("nao foi")
 
 
 if __name__ == '__main__':
